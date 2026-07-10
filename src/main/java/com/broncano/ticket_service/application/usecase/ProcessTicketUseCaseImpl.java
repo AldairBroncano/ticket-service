@@ -32,7 +32,6 @@ import java.util.List;
 @Service
 public class ProcessTicketUseCaseImpl implements ProcessTicketUseCase {
 
-
     private final TicketFolderReaderPort ticketFolderReaderPort;
     private final TicketFileWriterPort ticketFileWriterPort;
     private final FolderTicketProcessor folderTicketProcessor;
@@ -65,7 +64,7 @@ public class ProcessTicketUseCaseImpl implements ProcessTicketUseCase {
         if (folders.isEmpty()) {
             log.warn("El archivo Excel no contiene carpetas a procesar");
             throw new CoreBusinessException(
-                    "No se encontraton carpetas para procesar",
+                    "No se encontraron carpetas para procesar",
                     ErrorType.NO_FOLDERS_FOUND
             );
         }
@@ -73,7 +72,6 @@ public class ProcessTicketUseCaseImpl implements ProcessTicketUseCase {
         List<TicketInvoice> invoices = folders.stream()
                 .flatMap(folder -> folderTicketProcessor.process(folder).stream())
                 .toList();
-
 
         log.info("Procesamiento finalizado. Total de tickets generados: {}", invoices.size());
 
