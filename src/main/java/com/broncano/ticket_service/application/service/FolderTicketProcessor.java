@@ -23,5 +23,4 @@ public interface FolderTicketProcessor {
 
     List<TicketInvoice> process(String folderName);
 
-
 }

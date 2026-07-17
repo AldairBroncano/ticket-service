@@ -15,7 +15,7 @@ import com.broncano.ticket_service.infrastructure.web.error.ErrorType;
 public class CoreBusinessException extends CoreException {
 
   /**
-   * Crea una excepción de negocio con un mesaje y tipo de error.
+   * Crea una excepción de negocio con un mensaje y tipo de error.
    *
    * @param message mensaje descriptivo del error
    * @param type tipo de error asociado
