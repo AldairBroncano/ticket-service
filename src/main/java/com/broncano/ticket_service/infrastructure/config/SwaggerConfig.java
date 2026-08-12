@@ -35,6 +35,7 @@ import org.springframework.context.annotation.Configuration;
  * @version 1.0.0
  * @since 1.0.0
  */
+
 @Configuration
 public class SwaggerConfig {
 
@@ -48,9 +49,10 @@ public class SwaggerConfig {
      *  para generar la documentación interactiva del API.
      * </p>
      *
-     * @return intancia personalizada de {@link OpenAPI}
+     * @return instancia personalizada de {@link OpenAPI}
      *
      */
+
     @Bean
     public OpenAPI customOpenAPI(){
 

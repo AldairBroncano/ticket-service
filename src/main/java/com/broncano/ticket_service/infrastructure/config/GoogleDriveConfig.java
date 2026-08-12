@@ -57,13 +57,15 @@ public class GoogleDriveConfig {
 
         log.info("[DriveConfig] Inicializando cliente de Google Drive");
         try {
-            Resource credentialsResource = resourceLoader.getResource(googleDriveProperties.credentials().location());
+            Resource credentialsResource = resourceLoader.getResource(
+                    googleDriveProperties.credentials().location());
 
             GoogleCredentials credentials = GoogleCredentials
                     .fromStream(credentialsResource.getInputStream())
                     .createScoped(googleDriveProperties.scopes());
 
-            Drive drive = new Drive.Builder(GoogleNetHttpTransport.newTrustedTransport(),
+            Drive drive = new Drive.Builder(
+                    GoogleNetHttpTransport.newTrustedTransport(),
                     GsonFactory.getDefaultInstance(),
                     new HttpCredentialsAdapter(credentials)
             ).setApplicationName(googleDriveProperties.applicationName()).build();
