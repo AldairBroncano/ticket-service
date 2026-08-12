@@ -82,7 +82,7 @@ public class TicketGoogleDriveAdapter implements TicketGoogleDrivePort {
             }
 
             String folderId = result.getFiles().get(0).getId();
-            log.debug("[Drive] Carpeta no encontrada: {} -> id={}", folderName, folderId);
+            log.debug("[Drive] Carpeta encontrada: {} -> id={}", folderName, folderId);
 
             return Optional.of(folderId);
 
@@ -108,7 +108,7 @@ public class TicketGoogleDriveAdapter implements TicketGoogleDrivePort {
 
         try {
             String query = String.format(
-                    "'%S' in parents and mimeType='application/vnd.google-apps.folder' " +
+                    "'%s' in parents and mimeType='application/vnd.google-apps.folder' " +
                             "and name contains 'Tickets en general' and trashed=false",
                     parentFolderId
             );
@@ -129,7 +129,7 @@ public class TicketGoogleDriveAdapter implements TicketGoogleDrivePort {
             log.debug("[Drive] Subcarpeta Tickets encontrada -> id={}", ticketFolderId);
 
             return Optional.of(ticketFolderId);
-            
+
         } catch (Exception ex) {
             log.error("[Drive] Error buscando subcarpeta Tickets", ex);
             throw new CoreTechnicalException("Error accediendo a Google Drive al buscar la subcarpeta de Tickets",
