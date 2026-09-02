@@ -2,6 +2,7 @@ package com.broncano.ticket_service.infrastructure.classifier.regex;
 
 import com.broncano.ticket_service.domain.classifier.ClassifiedTicketValues;
 import com.broncano.ticket_service.domain.classifier.TicketInvoiceClassifier;
+import com.broncano.ticket_service.infrastructure.classifier.config.TicketInvoiceClassifierProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -32,14 +33,14 @@ public class RegexTicketInvoiceClassifier implements TicketInvoiceClassifier {
      * Constructor que inicializa los patrones de clasificación
      * a partir de la configuración.
      */
-    public RegexTicketInvoiceClassifier(Pattern invoicPattern, Pattern receipPattern) {
-        this.invoicPattern = invoicPattern;
-        this.receipPattern = receipPattern;
+    public RegexTicketInvoiceClassifier(TicketInvoiceClassifierProperties properties) {
+        this.invoicPattern = Pattern.compile(properties.invoiceRegex());
+        this.receipPattern = Pattern.compile(properties.receiptRegex());
     }
 
     /**
      * Clasifica el texto recibido identificando facturas
-     * y comprobantes mediante expresiones regurales.
+     * y comprobantes mediante expresiones regulares.
      *
      * @param text contenido textual del ticket
      * @return valores clasificados; vacío si el texto es nulo o vacío
